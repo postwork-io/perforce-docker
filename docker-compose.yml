@@ -1,0 +1,20 @@
+services:
+  p4d:
+    build:
+      context: .
+      dockerfile: dockerfile
+    args:
+      - PERFORCE_PASSWORD=${PERFORCE_PASSWORD}
+    ports:
+      - 1666:1666
+    volumes:
+      - versioned_files:/data
+      - journal_files:/journal
+volumes:
+  journal_files:
+  versioned_files:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${DOCKER_VOLUMES_PERFORCE_NFS_ADDR},rw,vers=4.1
+      device: ":${DOCKER_VOLUMES_PERFORCE_NFS_ADDR}/data"
