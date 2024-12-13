@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: dockerfile
-    args:
-      - PERFORCE_PASSWORD=${PERFORCE_PASSWORD}
+      args:
+        PERFORCE_PASSWORD: ${PERFORCE_PASSWORD}
     ports:
       - 1666:1666
     volumes:
