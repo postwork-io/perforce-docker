@@ -21,12 +21,15 @@ RUN apt-get update
 
 RUN apt-get install -y helix-p4d
 
+COPY ./entrypoint.sh .
+RUN chmod u+x ./entrypoint.sh
+
 COPY main.conf /etc/perforce/p4dctl.conf.d/main.conf
 RUN chown -R perforce:perforce /etc/perforce/p4dctl.conf.d
 
-RUN /opt/perforce/sbin/configure-helix-p4d.sh master -n -u perforce -P ${PERFORCE_PASSWORD} --unicode --case 1
+RUN /opt/perforce/sbin/configure-helix-p4d.sh main -n -u perforce -P ${PERFORCE_PASSWORD} --unicode --case 1
 # Go into our directory, start Perforce, and view the log outputs
-CMD p4dctl start master && tail -F /opt/perforce/servers/master/root/logs/log
+ENTRYPOINT [ "./entrypoint.sh" ]
 
 
 # P4ROOT = ROOT DRIVE
