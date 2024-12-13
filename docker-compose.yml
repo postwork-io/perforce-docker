@@ -17,4 +17,4 @@ volumes:
     driver_opts:
       type: nfs
       o: addr=${DOCKER_VOLUMES_PERFORCE_NFS_ADDR},rw,vers=4.1
-      device: ":${DOCKER_VOLUMES_PERFORCE_NFS_ADDR}/data"
+      device: ":${DOCKER_VOLUMES_PERFORCE_NFS_PATH}/data"
