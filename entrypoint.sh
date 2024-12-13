@@ -1,5 +1,5 @@
 #!/bin/bash
 
-p4d configure set security=3
-p4d protect
-p4dctl start main && tail -F /opt/perforce/servers/master/root/logs/log
+/bin/bash -c "p4 configure set security=3"
+/bin/bash -c "p4 protect"
+/bin/bash -c "p4dctl start main && tail -F /opt/perforce/servers/main/root/logs/log"
